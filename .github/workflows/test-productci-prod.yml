@@ -29,7 +29,7 @@ jobs:
         run: npm test
 
       - name: Build Product API Docker image
-  run: docker build -t product-api:1.0 -t duythuc110205/product-api:latest .
+        run: docker build -t product-api:1.0 .
 
       - name: Start MongoDB and Product API
         run: docker compose up -d
@@ -96,6 +96,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Tag Docker image for Docker Hub
+        run: docker tag product-api:1.0 duythuc110205/product-api:latest
 
       - name: Push Docker image to Docker Hub
         run: docker push duythuc110205/product-api:latest
