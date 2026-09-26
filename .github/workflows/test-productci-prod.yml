@@ -29,7 +29,7 @@ jobs:
         run: npm test
 
       - name: Build Product API Docker image
-        run: docker build -t duythuc110205/product-api:latest .
+  run: docker build -t product-api:1.0 -t duythuc110205/product-api:latest .
 
       - name: Start MongoDB and Product API
         run: docker compose up -d
