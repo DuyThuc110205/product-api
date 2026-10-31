@@ -13,6 +13,15 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
+// GET - Kiểm tra trạng thái hoạt động của Product API
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "UP",
+    service: "product-api",
+    database: mongoose.connection.readyState === 1 ? "CONNECTED" : "DISCONNECTED"
+  });
+});
+
 // Kết nối MongoDB
 mongoose
   .connect(MONGO_URI)
